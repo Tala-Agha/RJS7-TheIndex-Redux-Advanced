@@ -1,21 +1,22 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { Provider } from "react-redux";
+import { BrowserRouter } from "react-router-dom";
 import registerServiceWorker from "./registerServiceWorker";
-import { createStore, compose } from "redux";
+import { Provider } from "react-redux";
+import store from "./redux";
 
 import App from "./App";
-import reducer from "./redux/reducers";
 
-import { applyMiddleware } from "redux";
-import thunk from "redux-thunk";
+import { fetchAuthors, fetchBooks } from "./redux/actions";
 
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-const store = createStore(reducer, composeEnhancers(applyMiddleware(thunk)));
+store.dispatch(fetchAuthors());
+store.dispatch(fetchBooks());
 
 ReactDOM.render(
   <Provider store={store}>
-    <App />
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
   </Provider>,
   document.getElementById("root")
 );
