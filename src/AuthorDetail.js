@@ -10,7 +10,7 @@ const AuthorDetail = ({ authors, books, match }) => {
 
   if (!author) return <h2>Author not found!!!!</h2>;
 
-  const authorName = `{${author.first_name} ${author.last_name}}`;
+  const authorName = `${author.first_name} ${author.last_name}`;
   const authorBooks = author.books.map(bookID =>
     books.find(book => book.id === bookID)
   );
@@ -25,7 +25,7 @@ const AuthorDetail = ({ authors, books, match }) => {
           alt={authorName}
         />
       </div>
-      <BookTable books={author.books} />
+      <BookTable books={authorBooks} />
     </div>
   );
 };

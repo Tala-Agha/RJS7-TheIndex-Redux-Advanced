@@ -1,5 +1,6 @@
 import React from "react";
 import { Switch, Route, Redirect, withRouter } from "react-router-dom";
+import { connect } from "react-redux";
 
 // Components
 import Sidebar from "./Sidebar";
@@ -7,8 +8,6 @@ import Loading from "./Loading";
 import AuthorsList from "./AuthorsList";
 import AuthorDetail from "./AuthorDetail";
 import BookList from "./BookList";
-
-import { connect } from "react-redux";
 
 const App = ({ loading }) => {
   const getView = () => {
@@ -40,7 +39,7 @@ const App = ({ loading }) => {
 
 const mapStateToProps = state => {
   return {
-    loading: state.authorsState.loading
+    loading: state.authorsState.loading || state.booksState.loading
   };
 };
 
